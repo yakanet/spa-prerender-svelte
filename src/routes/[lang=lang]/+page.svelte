@@ -41,4 +41,9 @@
         color: #AA0000;
         font-size: 1.5rem;
     }
+
+    a {
+        display: inline-block;
+        padding-block: 0.5rem;
+    }
 </style>
