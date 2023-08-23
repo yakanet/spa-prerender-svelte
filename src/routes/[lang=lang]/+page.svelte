@@ -24,7 +24,7 @@
 <ul>
     {#each data.pages as page}
         <li>
-            <a href="pages/{page}">Page {page}</a>
+            <a href="/{selectedLanguage}/pages/{page}">Page {page}</a>
         </li>
     {/each}
 </ul>
