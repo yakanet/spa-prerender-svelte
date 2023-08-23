@@ -12,6 +12,7 @@
 
 <svelte:head>
     <title>Welcome to Sveltekit</title>
+    <meta name="description" content="Welcome to Sveltekit">
 </svelte:head>
 
 <h1>Welcome to SvelteKit</h1>
