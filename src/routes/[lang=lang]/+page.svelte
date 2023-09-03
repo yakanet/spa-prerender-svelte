@@ -9,7 +9,6 @@
     let selectedLanguage = data.language;
 
     function setLanguage() {
-        console.log(selectedLanguage);
         window.location.href = "/" + selectedLanguage;
     }
 
@@ -24,7 +23,7 @@
     <meta name="description" content="Welcome to Sveltekit" />
 </svelte:head>
 
-<h1>[{JSON.stringify($locale)}] Welcome to SvelteKit</h1>
+<h1>[{$locale}] Welcome to SvelteKit</h1>
 <p>{$LL.hi({ name: "John" })}</p>
 
 <section>
@@ -40,14 +39,15 @@
             aria-label={restaurant.name}
         >
             <a href="/{selectedLanguage}/restaurants/{restaurant.id}">
-                {JSON.stringify(restaurant)}
+                <span>{restaurant.name}</span>
             </a>
+            <small>{restaurant.open_hour} - {restaurant.close_hour}</small>
         </li>
     {/each}
 
     {#each data.products as product}
         <li aria-label={product.name}>
-            {JSON.stringify(product)}
+            {product.name}
         </li>
     {/each}
 </ul>
@@ -69,6 +69,11 @@
     a {
         display: inline-block;
         padding-block: 0.5rem;
+    }
+
+    small {
+        font-size: 0.75rem;
+        display: block;
     }
 
     .opened::after {
