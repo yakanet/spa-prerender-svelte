@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { LL } from "$i18n/i18n-svelte";
+    import { LL, locale } from "$i18n/i18n-svelte";
     import type { Produits, Restaurants } from "$lib/client.types";
     import Fuse from "fuse.js";
     import { createCombobox, melt } from "@melt-ui/svelte";
@@ -37,7 +37,7 @@
         closeOnOutsideClick: true,
         onSelectedChange: ({ curr, next }) => {
             if (next?.value?.type === "restaurant") {
-                goto("./restaurants/" + next.value.id);
+                goto(`/${$locale}/restaurants/${next.value.id}`);
             }
             return next;
         },
