@@ -40,10 +40,11 @@
 
 <style>
     .pwa-toast {
-        position: fixed;
+        position: absolute;
+        left: 0;
         right: 0;
         bottom: 0;
-        margin: 16px;
+        margin: 0.5rem;
         padding: 12px;
         border: 1px solid #8885;
         border-radius: 4px;
