@@ -15,7 +15,7 @@ export type Translations = RootTranslation
 
 type RootTranslation = {
 	/**
-	 * B​o​n​j​o​u​r​ ​{​n​a​m​e​}​!​ ​M​e​r​c​i​ ​d​e​ ​m​e​t​t​r​e​ ​u​n​e​ ​é​t​o​i​l​e​ ​s​i​ ​v​o​u​s​ ​a​i​m​e​z​ ​c​e​ ​p​r​o​j​e​t
+	 * B​o​n​j​o​u​r​ ​{​n​a​m​e​}​!
 	 * @param {unknown} name
 	 */
 	hi: RequiredParams<'name'>
@@ -27,7 +27,7 @@ type RootTranslation = {
 
 export type TranslationFunctions = {
 	/**
-	 * Bonjour {name}! Merci de mettre une étoile si vous aimez ce projet
+	 * Bonjour {name}!
 	 */
 	hi: (arg: { name: unknown }) => LocalizedString
 	/**

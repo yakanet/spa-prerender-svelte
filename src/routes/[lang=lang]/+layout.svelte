@@ -1,8 +1,21 @@
-<script>
-    import { setLocale } from "$i18n/i18n-svelte";
+<script lang="ts">
+  import { setLocale } from "$i18n/i18n-svelte";
+  import { pwaInfo } from "virtual:pwa-info";
 
-    export let data;
-    setLocale(data.locale);
+  $: webManifest = pwaInfo ? pwaInfo.webManifest.linkTag : "";
+
+  export let data;
+  setLocale(data.locale);
 </script>
 
-<slot />
+<svelte:head>
+  {@html webManifest}
+</svelte:head>
+
+<main>
+  <slot />
+</main>
+
+{#await import("$lib/ReloadPrompt.svelte") then { default: ReloadPrompt }}
+  <ReloadPrompt />
+{/await}

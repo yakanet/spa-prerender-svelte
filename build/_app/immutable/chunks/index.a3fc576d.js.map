@@ -1,0 +1,1 @@
+{"version":3,"file":"index.a3fc576d.js","sources":["../../../../../../src/i18n/en/index.ts"],"sourcesContent":["import type { BaseTranslation } from '../i18n-types'\r\n\r\nconst en = {\r\n\thi: 'Hi {name:string}!',\r\n\tsearch: 'Search'\r\n} satisfies BaseTranslation\r\n\r\nexport default en\r\n"],"names":["en"],"mappings":"AAEA,MAAMA,EAAK,CACV,GAAI,oBACJ,OAAQ,QACT"}

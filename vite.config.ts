@@ -1,8 +1,12 @@
 import { sveltekit } from '@sveltejs/kit/vite';
-import { build, defineConfig } from 'vite';
+import { defineConfig } from 'vite';
+import { SvelteKitPWA } from '@vite-pwa/sveltekit'
+
 
 export default defineConfig({
-	plugins: [sveltekit()],
+	plugins: [sveltekit(), SvelteKitPWA({
+		strategies: 'generateSW'
+	})],
 	test: {
 		include: ['src/**/*.{test,spec}.{js,ts}'],
 	},
