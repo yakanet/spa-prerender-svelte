@@ -1,21 +1,24 @@
 <script lang="ts">
     import { browser } from "$app/environment";
-    import { LL, locale } from "$i18n/i18n-svelte";
+    import { LL, locale, setLocale } from "$i18n/i18n-svelte";
     import type { Restaurants } from "$lib/client.types.js";
     import { isRestaurantOpen } from "$lib/client/restaurants.js";
+    import type { Locale } from "typesafe-i18n/types/runtime/src/core.mjs";
     import Searchbar from "./Searchbar.svelte";
 
     export let data;
-    let selectedLanguage = data.language;
-
-    function setLanguage() {
-        window.location.href = "/" + selectedLanguage;
-    }
 
     const checkOpened = (restaurant: Restaurants) => {
-        if (!browser) return null; // Should not prerender this open status
-        return isRestaurantOpen(restaurant) ? "OPEN" : "CLOSE";
+        return isRestaurantOpen(restaurant) ? "open" : "close";
     };
+
+    function localeToFlag(code: string) {
+        return code
+            .split("")
+            .map((letter) => (letter.charCodeAt(0) % 32) + 0x1f1e5)
+            .map((emojiCode) => String.fromCodePoint(emojiCode))
+            .join("");
+    }
 </script>
 
 <svelte:head>
@@ -32,16 +35,18 @@
 
 <ul>
     {#each data.restaurants as restaurant}
-        {@const status = checkOpened(restaurant)}
-        <li
-            class:opened={status === "OPEN"}
-            class:closed={status === "CLOSE"}
-            aria-label={restaurant.name}
-        >
-            <a href="/{selectedLanguage}/restaurants/{restaurant.id}">
+        <li class="restaurant" aria-label={restaurant.name}>
+            <a href="/{$locale}/restaurants/{restaurant.id}">
                 <span>{restaurant.name}</span>
             </a>
             <small>{restaurant.open_hour} - {restaurant.close_hour}</small>
+            <div class="restaurant__status">
+                {#if browser}
+                    {checkOpened(restaurant)}
+                {:else}
+                    &nbsp;
+                {/if}
+            </div>
         </li>
     {/each}
 
@@ -52,13 +57,18 @@
     {/each}
 </ul>
 
-<select bind:value={selectedLanguage} on:change={() => setLanguage()}>
+<div class="languages">
     {#each data.languages as language}
-        <option value={language} selected={language === selectedLanguage}
-            >{language}</option
+        <a
+            href="/{language}"
+            class="language"
+            data-sveltekit-reload
+            class:active={$locale === language}
         >
+            {@html localeToFlag(language)}
+        </a>
     {/each}
-</select>
+</div>
 
 <style>
     h1 {
@@ -76,18 +86,19 @@
         display: block;
     }
 
-    .opened::after {
-        content: "open";
-    }
-
-    .closed::after {
-        content: "close";
-    }
-
-    .opened::after,
-    .closed::after {
+    .restaurant__status {
         border: 1px solid #ccc;
         display: inline-block;
         background-color: #ccc;
+    }
+
+    .languages {
+        display: flex;
+        gap: 2rem;
+        justify-content: center;
+    }
+
+    .language.active {
+        outline: 1px solid #0000cc33;
     }
 </style>
