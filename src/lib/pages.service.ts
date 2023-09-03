@@ -1,13 +1,5 @@
 import { locales } from "$i18n/i18n-util";
 
-const PAGES = [
-    1, 23, 20, 10
-];
-
-export async function getPagesId() {
-    return Promise.resolve(PAGES);
-}
-
 export function getLanguages() {
     return locales;
 }

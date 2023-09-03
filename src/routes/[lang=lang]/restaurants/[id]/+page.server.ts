@@ -1,10 +1,10 @@
-import {Directus} from '$lib/client.server.js';
+import { Directus } from '$lib/client.server.js';
 import { cartesian, getLanguages } from '$lib/pages.service.js';
 //export const csr = false;
 
-export const load = async ({params, fetch}) => {
+export const load = async ({ params, fetch }) => {
     const directus = new Directus(fetch)
-    
+
     return {
         restaurant: directus.getRestaurant(params.id)
     }
@@ -18,4 +18,4 @@ export async function entries() {
         id: String(restaurantId),
         lang: language,
     })));
-  }
+}

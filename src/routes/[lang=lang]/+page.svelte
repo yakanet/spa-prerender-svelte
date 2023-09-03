@@ -9,7 +9,9 @@
     let selectedLanguage = data.language;
 
     let searchTerm = "";
-    $: searchResult = index.search(searchTerm);
+    $: searchResult = index.search(searchTerm, {
+        limit: 5
+    });
     
     type IndexType = "restaurant" | "product";
     const index = new Fuse(

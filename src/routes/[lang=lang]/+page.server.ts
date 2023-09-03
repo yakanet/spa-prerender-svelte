@@ -1,5 +1,5 @@
 import { Directus } from '$lib/client.server.js';
-import { getLanguages, getPagesId } from '$lib/pages.service.js';
+import { getLanguages } from '$lib/pages.service.js';
 
 export const load = async ({ fetch, parent }) => {
     const directus = new Directus(fetch);
@@ -8,7 +8,6 @@ export const load = async ({ fetch, parent }) => {
     return {
         language: locale,
         languages: getLanguages(),
-        pages: getPagesId(),
         restaurants: directus.getRestaurants(),
         products: directus.getProducts(locale)
     }
