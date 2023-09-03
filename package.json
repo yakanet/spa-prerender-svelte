@@ -25,6 +25,8 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@directus/sdk": "^11.0.3",
+		"fuse.js": "^6.6.2",
 		"typesafe-i18n": "^5.26.1"
 	}
 }

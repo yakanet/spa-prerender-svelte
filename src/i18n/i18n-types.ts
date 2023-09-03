@@ -18,14 +18,22 @@ type RootTranslation = {
 	 * B​o​n​j​o​u​r​ ​{​n​a​m​e​}​!​ ​M​e​r​c​i​ ​d​e​ ​m​e​t​t​r​e​ ​u​n​e​ ​é​t​o​i​l​e​ ​s​i​ ​v​o​u​s​ ​a​i​m​e​z​ ​c​e​ ​p​r​o​j​e​t
 	 * @param {unknown} name
 	 */
-	HI: RequiredParams<'name'>
+	hi: RequiredParams<'name'>
+	/**
+	 * R​e​c​h​e​r​c​h​e​r
+	 */
+	search: string
 }
 
 export type TranslationFunctions = {
 	/**
 	 * Bonjour {name}! Merci de mettre une étoile si vous aimez ce projet
 	 */
-	HI: (arg: { name: unknown }) => LocalizedString
+	hi: (arg: { name: unknown }) => LocalizedString
+	/**
+	 * Rechercher
+	 */
+	search: () => LocalizedString
 }
 
 export type Formatters = {}
