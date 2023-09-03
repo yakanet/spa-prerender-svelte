@@ -24,14 +24,13 @@
     <meta name="description" content="Welcome to Sveltekit" />
 </svelte:head>
 
-<h1>Welcome to SvelteKit</h1>
-<p>
-    {$LL.hi({ name: "John" })}
-</p>
+<h1>[{JSON.stringify($locale)}] Welcome to SvelteKit</h1>
+<p>{$LL.hi({ name: "John" })}</p>
 
-<Searchbar restaurants={data.restaurants} products={data.products} />
+<section>
+    <Searchbar restaurants={data.restaurants} products={data.products} />
+</section>
 
-{JSON.stringify($locale)}
 <ul>
     {#each data.restaurants as restaurant}
         {@const status = checkOpened(restaurant)}
