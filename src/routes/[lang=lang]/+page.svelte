@@ -2,13 +2,18 @@
     import { browser } from "$app/environment";
     import { LL, locale, setLocale } from "$i18n/i18n-svelte";
     import type { Restaurants } from "$lib/client.types.js";
-    import { getFranceTime, isRestaurantOpen } from "$lib/client/restaurants.js";
+    import {
+        getFranceTime,
+        isRestaurantOpen,
+    } from "$lib/client/restaurants.js";
     import Searchbar from "./Searchbar.svelte";
 
     export let data;
 
     const checkOpened = (restaurant: Restaurants) => {
-        return isRestaurantOpen(restaurant, getFranceTime()) ? "open" : "close";
+        return isRestaurantOpen(restaurant, getFranceTime())
+            ? $LL.open()
+            : $LL.close();
     };
 
     function localeToFlag(code: string) {
@@ -22,17 +27,17 @@
 
 <svelte:head>
     <title>Welcome to Sveltekit</title>
-    <meta name="description" content="Welcome to Sveltekit" />
+    <meta name="description" content={$LL.title()} />
 </svelte:head>
 
-<h1>[{$locale.toUpperCase()}] Welcome to SvelteKit</h1>
+<h1>[{$locale.toUpperCase()}] {$LL.title()}</h1>
 <p>{$LL.hi({ name: "John" })}</p>
 
 <section>
     <Searchbar restaurants={data.restaurants} products={data.products} />
 </section>
 
-<h2>Restaurants</h2>
+<h2>{$LL.restaurants()}</h2>
 <ul class="restaurants">
     {#each data.restaurants as restaurant}
         <li class="restaurant" aria-label={restaurant.name}>
@@ -42,7 +47,7 @@
             <small>{restaurant.open_hour} - {restaurant.close_hour}</small>
             <div class="restaurant__status">
                 {#if browser}
-                    {checkOpened(restaurant)} - {getFranceTime(new Date())}
+                    {checkOpened(restaurant)}
                 {:else}
                     &nbsp;
                 {/if}
@@ -51,7 +56,7 @@
     {/each}
 </ul>
 
-<h2>Produits</h2>
+<h2>{$LL.products()}</h2>
 
 <ul class="products">
     {#each data.products as product}
@@ -77,7 +82,6 @@
 </div>
 
 <style>
-
     ul {
         list-style: none;
         padding: 0;
@@ -105,6 +109,7 @@
     }
 
     .restaurant__status {
+        text-transform: lowercase;
         border: 1px solid #ccc;
         display: inline-block;
         background-color: #ccc;

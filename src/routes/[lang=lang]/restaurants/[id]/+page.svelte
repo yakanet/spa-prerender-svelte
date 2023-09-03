@@ -1,4 +1,6 @@
 <script lang="ts">
+    import { locale } from "$i18n/i18n-svelte.js";
+
     export let data;
 </script>
 
@@ -6,4 +8,4 @@
 
 <pre>{JSON.stringify(data.restaurant, null, 2)}</pre>
 
-<a href="/">Back</a>
+<a href="/{$locale}">Back</a>

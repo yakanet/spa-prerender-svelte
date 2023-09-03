@@ -1,5 +1,4 @@
 // See https://kit.svelte.dev/docs/types#app
-
 import type { Locales, TranslationFunctions } from "$i18n/i18n-types";
 
 // for information about these interfaces

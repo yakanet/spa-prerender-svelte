@@ -1,8 +1,9 @@
 import { Directus } from '$lib/client.server.js';
 import { cartesian, getLanguages } from '$lib/pages.service.js';
+import type { PageServerLoad } from './$types.js';
 //export const csr = false;
 
-export const load = async ({ params, fetch }) => {
+export const load: PageServerLoad = async ({ params, fetch }) => {
     const directus = new Directus(fetch)
 
     return {

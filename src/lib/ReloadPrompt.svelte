@@ -1,4 +1,5 @@
 <script lang="ts">
+    import LL from "$i18n/i18n-svelte";
     import { useRegisterSW } from "virtual:pwa-register/svelte";
     const { needRefresh, updateServiceWorker, offlineReady } = useRegisterSW({
         onRegistered(r) {
@@ -17,20 +18,24 @@
         offlineReady.set(false);
         needRefresh.set(false);
     };
-    $: toast =  $needRefresh;
+    $: toast = $needRefresh;
 </script>
 
 {#if toast}
     <div class="pwa-toast" role="alert">
         <div class="message">
             <span>
-                New content available, click on reload button to update.
+                {$LL.pwa_new_content()}
             </span>
         </div>
         {#if $needRefresh}
-            <button on:click={() => updateServiceWorker(true)}> Reload </button>
+            <button on:click={() => updateServiceWorker(true)}>
+                {$LL.pwa_reload()}
+            </button>
         {/if}
-        <button on:click={close}> Close </button>
+        <button on:click={close}>
+            {$LL.pwa_close()}
+        </button>
     </div>
 {/if}
 

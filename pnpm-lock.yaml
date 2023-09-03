@@ -34,6 +34,12 @@ devDependencies:
   '@vite-pwa/sveltekit':
     specifier: ^0.2.5
     version: 0.2.5(@sveltejs/kit@1.22.6)(vite-plugin-pwa@0.16.4)
+  add:
+    specifier: ^2.0.6
+    version: 2.0.6
+  pnpm:
+    specifier: ^8.7.1
+    version: 8.7.1
   svelte:
     specifier: ^4.0.5
     version: 4.2.0
@@ -61,6 +67,9 @@ devDependencies:
   vite:
     specifier: ^4.4.2
     version: 4.4.9(@types/node@20.5.9)
+  vite-plugin-pwa:
+    specifier: ^0.16.4
+    version: 0.16.4(vite@4.4.9)(workbox-build@7.0.0)(workbox-window@7.0.0)
   workbox-window:
     specifier: ^7.0.0
     version: 7.0.0
@@ -1786,6 +1795,10 @@ packages:
     engines: {node: '>=0.4.0'}
     hasBin: true
 
+  /add@2.0.6:
+    resolution: {integrity: sha512-j5QzrmsokwWWp6kUcJQySpbG+xfOBqqKnup3OIk1pz+kB/80SLorZ9V8zHFLO92Lcd+hbvq8bT+zOGoPkmBV0Q==}
+    dev: true
+
   /agent-base@6.0.2:
     resolution: {integrity: sha512-RZNwNclF7+MS/8bDg70amg32dyeZGZxiDuQmZxKLAlQjr3jGyLx+4Kkk58UO7D2QdgFIQCovuSuZESne6RG6XQ==}
     engines: {node: '>= 6.0.0'}
@@ -3286,6 +3299,12 @@ packages:
       mlly: 1.4.1
       pathe: 1.1.1
     dev: false
+
+  /pnpm@8.7.1:
+    resolution: {integrity: sha512-Qbt3EhYUaXFS2k4FLQA7r2/eYz/JoDeG680/3UXG0Ga03LPuY4GgdvCLe+zO3M7ZnWG4VI4bAwk7QpJyfr5eqA==}
+    engines: {node: '>=16.14'}
+    hasBin: true
+    dev: true
 
   /postcss@8.4.28:
     resolution: {integrity: sha512-Z7V5j0cq8oEKyejIKfpD8b4eBy9cwW2JWPk0+fB1HOAMsfHbnAXLLS+PfVWlzMSLQaWttKDt607I0XHmpE67Vw==}

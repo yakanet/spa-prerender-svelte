@@ -15,6 +15,10 @@ export type Translations = RootTranslation
 
 type RootTranslation = {
 	/**
+	 * B​i​e​n​v​e​n​u​e​ ​s​u​r​ ​S​v​e​l​t​e​k​i​t
+	 */
+	title: string
+	/**
 	 * B​o​n​j​o​u​r​ ​{​n​a​m​e​}​!
 	 * @param {unknown} name
 	 */
@@ -23,9 +27,41 @@ type RootTranslation = {
 	 * R​e​c​h​e​r​c​h​e​r
 	 */
 	search: string
+	/**
+	 * R​e​s​t​a​u​r​a​n​t​s
+	 */
+	restaurants: string
+	/**
+	 * P​r​o​d​u​i​t​s
+	 */
+	products: string
+	/**
+	 * O​u​v​e​r​t
+	 */
+	open: string
+	/**
+	 * F​e​r​m​é
+	 */
+	close: string
+	/**
+	 * N​o​u​v​e​l​l​e​ ​v​e​r​s​i​o​n​ ​d​i​s​p​o​n​i​b​l​e​.​ ​C​l​i​q​u​e​r​ ​s​u​r​ ​l​e​ ​b​o​u​t​o​n​ ​r​a​f​f​r​a​i​c​h​i​r​ ​p​o​u​r​ ​m​e​t​t​r​e​ ​à​ ​j​o​u​r​.
+	 */
+	pwa_new_content: string
+	/**
+	 * R​a​f​f​r​a​i​c​h​i​r
+	 */
+	pwa_reload: string
+	/**
+	 * F​e​r​m​e​r
+	 */
+	pwa_close: string
 }
 
 export type TranslationFunctions = {
+	/**
+	 * Bienvenue sur Sveltekit
+	 */
+	title: () => LocalizedString
 	/**
 	 * Bonjour {name}!
 	 */
@@ -34,6 +70,34 @@ export type TranslationFunctions = {
 	 * Rechercher
 	 */
 	search: () => LocalizedString
+	/**
+	 * Restaurants
+	 */
+	restaurants: () => LocalizedString
+	/**
+	 * Produits
+	 */
+	products: () => LocalizedString
+	/**
+	 * Ouvert
+	 */
+	open: () => LocalizedString
+	/**
+	 * Fermé
+	 */
+	close: () => LocalizedString
+	/**
+	 * Nouvelle version disponible. Cliquer sur le bouton raffraichir pour mettre à jour.
+	 */
+	pwa_new_content: () => LocalizedString
+	/**
+	 * Raffraichir
+	 */
+	pwa_reload: () => LocalizedString
+	/**
+	 * Fermer
+	 */
+	pwa_close: () => LocalizedString
 }
 
 export type Formatters = {}

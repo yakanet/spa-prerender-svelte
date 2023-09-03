@@ -11,8 +11,7 @@
 		"strict": true,
 		"types": [
 			"vite-plugin-pwa/svelte",
-			"vite-plugin-pwa/info",
-			"pwa-register/svelte"
+			"vite-plugin-pwa/info"
 		]
 	}
 }
