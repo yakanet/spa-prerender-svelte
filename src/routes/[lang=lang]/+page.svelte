@@ -1,59 +1,43 @@
 <script lang="ts">
+    import { browser } from "$app/environment";
     import { LL, locale } from "$i18n/i18n-svelte";
     import type { Restaurants } from "$lib/client.types.js";
+    import { isRestaurantOpen } from "$lib/client/restaurants.js";
     import Fuse from "fuse.js";
 
     export let data;
-    let selectedLanguage = data.language;
+    $: selectedLanguage = data.language;
 
-    let searchResult: any[] = [];
-
-    function isOpen(restaurant: Restaurants) {
-        const currentTime = new Date().toISOString().substring(11, 19);
-        if (!restaurant.close_hour || !restaurant.open_hour) {
-            return true;
+    let searchTerm = "";
+    $: searchResult = index.search(searchTerm);
+    
+    type IndexType = "restaurant" | "product";
+    const index = new Fuse(
+        [
+            ...data.restaurants.map((r) => ({
+                ...r,
+                type: "restaurant" satisfies IndexType as IndexType,
+            })),
+            ...data.products.map((p) => ({
+                ...p,
+                type: "product" satisfies IndexType as IndexType,
+            })),
+        ],
+        {
+            includeMatches: true,
+            keys: ["name"],
         }
-        return (
-            restaurant.close_hour.localeCompare(currentTime) >= 0 &&
-            restaurant.open_hour.localeCompare(currentTime) < 0
-        );
-    }
-
-    function search(inputElement: HTMLInputElement) {
-        const searchIndex = new Fuse(
-            [
-                ...data.restaurants.map((r) => ({ ...r, type: "restaurant" })),
-                ...data.products.map((r) => ({ ...r, type: "product" })),
-            ],
-            {
-                includeMatches: true,
-                keys: ["name"],
-            }
-        );
-
-        const find = () => {
-            searchResult = searchIndex.search(inputElement.value);
-        };
-
-        inputElement.addEventListener("input", find);
-
-        return {
-            destroy() {
-                inputElement.removeEventListener("input", find);
-            },
-        };
-    }
+    );
 
     function setLanguage() {
         console.log(selectedLanguage);
         window.location.href = "/" + selectedLanguage;
     }
 
-    function hideIfClose(element: HTMLElement, restaurant: Restaurants) {
-        const currentTime = new Date().toISOString().substring(11, 19);
-
-        element.classList.add(isOpen(restaurant) ? "opened" : "closed");
-    }
+    const checkOpened = (restaurant: Restaurants) => {
+        if (!browser) return null; // Should not prerender this open status
+        return isRestaurantOpen(restaurant) ? "OPEN" : "CLOSE";
+    };
 </script>
 
 <svelte:head>
@@ -68,7 +52,7 @@
 
 <div>
     <label for="search">{$LL.search()}</label>
-    <input type="search" id="search" use:search />
+    <input autocomplete="off" type="search" id="search" bind:value={searchTerm} />
 </div>
 <ul class="search-result">
     {#each searchResult as result}
@@ -88,7 +72,8 @@
 {JSON.stringify($locale)}
 <ul>
     {#each data.restaurants as restaurant}
-        <li use:hideIfClose={restaurant}>
+        {@const status = checkOpened(restaurant)}
+        <li class:opened={status === 'OPEN'} class:closed={status === 'CLOSE'}>
             <a href="/{selectedLanguage}/restaurants/{restaurant.id}">
                 {JSON.stringify(restaurant)}
             </a>
@@ -121,15 +106,16 @@
         padding-block: 0.5rem;
     }
 
-    :global(.opened::after) {
+    .opened::after {
         content: "open";
     }
 
-    :global(.closed::after) {
+    .closed::after {
         content: "close";
     }
 
-    :global(.opened::after, .closed::after) {
+    .opened::after,
+    .closed::after {
         border: 1px solid #ccc;
         display: inline-block;
         background-color: #ccc;

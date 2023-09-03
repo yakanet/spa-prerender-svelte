@@ -17,9 +17,6 @@ const config = {
 		adapter: adapter({
 			precompress: true,
 		}),
-		prerender: {
-			
-		},
 		paths: {
 			relative: false
 		},

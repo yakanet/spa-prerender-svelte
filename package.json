@@ -7,6 +7,7 @@
 		"build": "vite build",
 		"preview": "vite preview",
 		"i18n": "typesafe-i18n",
+		"test:unit": "vitest",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"typesafe-i18n": "typesafe-i18n"
@@ -27,6 +28,7 @@
 	"dependencies": {
 		"@directus/sdk": "^11.0.3",
 		"fuse.js": "^6.6.2",
-		"typesafe-i18n": "^5.26.1"
+		"typesafe-i18n": "^5.26.1",
+		"vitest": "^0.34.3"
 	}
 }
