@@ -15,3 +15,13 @@ export function isRestaurantOpen(restaurant: { close_hour?: string | null, open_
         );
     }
 }
+
+export function getFranceTime(date: Date = new Date()) {
+    const formatter = new Intl.DateTimeFormat([], {
+        timeZone: 'Europe/Paris',
+        hour: 'numeric',
+        minute: 'numeric',
+        second: 'numeric',
+    });
+    return formatter.format(date);
+}

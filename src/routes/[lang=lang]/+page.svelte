@@ -2,13 +2,13 @@
     import { browser } from "$app/environment";
     import { LL, locale, setLocale } from "$i18n/i18n-svelte";
     import type { Restaurants } from "$lib/client.types.js";
-    import { isRestaurantOpen } from "$lib/client/restaurants.js";
+    import { getFranceTime, isRestaurantOpen } from "$lib/client/restaurants.js";
     import Searchbar from "./Searchbar.svelte";
 
     export let data;
 
     const checkOpened = (restaurant: Restaurants) => {
-        return isRestaurantOpen(restaurant) ? "open" : "close";
+        return isRestaurantOpen(restaurant, getFranceTime()) ? "open" : "close";
     };
 
     function localeToFlag(code: string) {
@@ -42,7 +42,7 @@
             <small>{restaurant.open_hour} - {restaurant.close_hour}</small>
             <div class="restaurant__status">
                 {#if browser}
-                    {checkOpened(restaurant)}
+                    {checkOpened(restaurant)} - {getFranceTime(new Date())}
                 {:else}
                     &nbsp;
                 {/if}
