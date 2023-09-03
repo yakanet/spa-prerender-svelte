@@ -3,7 +3,6 @@
     import { LL, locale, setLocale } from "$i18n/i18n-svelte";
     import type { Restaurants } from "$lib/client.types.js";
     import { isRestaurantOpen } from "$lib/client/restaurants.js";
-    import type { Locale } from "typesafe-i18n/types/runtime/src/core.mjs";
     import Searchbar from "./Searchbar.svelte";
 
     export let data;
@@ -26,14 +25,15 @@
     <meta name="description" content="Welcome to Sveltekit" />
 </svelte:head>
 
-<h1>[{$locale}] Welcome to SvelteKit</h1>
+<h1>[{$locale.toUpperCase()}] Welcome to SvelteKit</h1>
 <p>{$LL.hi({ name: "John" })}</p>
 
 <section>
     <Searchbar restaurants={data.restaurants} products={data.products} />
 </section>
 
-<ul>
+<h2>Restaurants</h2>
+<ul class="restaurants">
     {#each data.restaurants as restaurant}
         <li class="restaurant" aria-label={restaurant.name}>
             <a href="/{$locale}/restaurants/{restaurant.id}">
@@ -49,7 +49,11 @@
             </div>
         </li>
     {/each}
+</ul>
 
+<h2>Produits</h2>
+
+<ul class="products">
     {#each data.products as product}
         <li aria-label={product.name}>
             {product.name}
@@ -73,9 +77,21 @@
 </div>
 
 <style>
-    h1 {
-        color: #aa0000;
-        font-size: 1.5rem;
+
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .restaurants li + li,
+    .products li + li {
+        border-top: 1px solid #dedede;
+    }
+
+    .restaurants li,
+    .products li {
+        margin-block: 0.25rem;
     }
 
     ul a {

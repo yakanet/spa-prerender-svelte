@@ -82,6 +82,10 @@
 </ul>
 
 <style>
+    input[type="search"] {
+        padding: 0.75rem;
+    }
+
     .search-result:empty {
         display: none;
     }
