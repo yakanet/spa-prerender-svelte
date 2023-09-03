@@ -38,6 +38,10 @@
         onSelectedChange: ({ curr, next }) => {
             if (next?.value?.type === "restaurant") {
                 goto(`/${$locale}/restaurants/${next.value.id}`);
+                return undefined;
+            }
+            if (next?.value) {
+                alert("Selection du produit: " + next.value.name);
             }
             return next;
         },
@@ -49,7 +53,9 @@
 </script>
 
 <div>
-    <label use:melt={$label} for="search">{$LL.search()}</label>
+    <label use:melt={$label} for="search" style="display: block;">
+        {$LL.search()}
+    </label>
     <input autocomplete="off" type="search" id="search" use:melt={$input} />
 </div>
 <ul class="search-result" use:melt={$menu}>

@@ -65,6 +65,7 @@
             class="language"
             data-sveltekit-reload
             class:active={$locale === language}
+            tabindex={$locale === language ? -1 : undefined}
         >
             {@html localeToFlag(adjusted)}
         </a>
@@ -77,7 +78,7 @@
         font-size: 1.5rem;
     }
 
-    a {
+    ul a {
         display: inline-block;
         padding-block: 0.5rem;
     }
@@ -99,7 +100,12 @@
         justify-content: center;
     }
 
+    .language {
+        text-decoration: none;
+    }
+
     .language.active {
         outline: 1px solid #0000cc33;
+        outline-offset: 0.25rem;
     }
 </style>
