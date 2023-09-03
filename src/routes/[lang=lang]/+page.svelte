@@ -6,7 +6,7 @@
     import Fuse from "fuse.js";
 
     export let data;
-    $: selectedLanguage = data.language;
+    let selectedLanguage = data.language;
 
     let searchTerm = "";
     $: searchResult = index.search(searchTerm);
