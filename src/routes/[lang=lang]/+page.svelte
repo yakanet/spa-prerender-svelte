@@ -26,7 +26,7 @@
 </script>
 
 <svelte:head>
-    <title>Welcome to Sveltekit</title>
+    <title>{$LL.title()}</title>
     <meta name="description" content={$LL.title()} />
 </svelte:head>
 
