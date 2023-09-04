@@ -1,12 +1,14 @@
 <script lang="ts">
     import { browser } from "$app/environment";
     import { LL, locale, setLocale } from "$i18n/i18n-svelte";
+    import RestaurantStatus from "$lib/RestaurantStatus.svelte";
     import type { Restaurants } from "$lib/client.types.js";
     import {
         getAffluence,
         getFranceTime,
         isRestaurantOpen,
     } from "$lib/client/restaurants.js";
+    import { fade } from "svelte/transition";
     import Searchbar from "./Searchbar.svelte";
 
     export let data;
@@ -44,22 +46,11 @@
                 <span>{restaurant.name}</span>
             </a>
             <small>{restaurant.open_hour} - {restaurant.close_hour}</small>
-            <div class="restaurant__status">
-                {#if browser}
-                    {@const open = checkOpened(restaurant)}
-                    {#if open === "CLOSE"}
-                        {$LL.close()}
-                    {:else}
-                        {#await getAffluence(restaurant.id)}
-                            {$LL.open()}
-                        {:then affluence}
-                            {affluence} mn
-                        {/await}
-                    {/if}
-                {:else}
-                    &nbsp;
-                {/if}
-            </div>
+            <RestaurantStatus {restaurant} let:display>
+                <div class="restaurant__status" class:hide={!display} in:fade>
+                    {display}
+                </div>
+            </RestaurantStatus>
         </li>
     {/each}
 </ul>
@@ -136,5 +127,9 @@
     .language.active {
         outline: 1px solid #0000cc33;
         outline-offset: 0.25rem;
+    }
+
+    .hide {
+        visibility: hidden;
     }
 </style>

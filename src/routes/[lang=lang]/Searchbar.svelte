@@ -84,6 +84,7 @@
 <style>
     input[type="search"] {
         padding: 0.75rem;
+        width: 100%;
     }
 
     .search-result:empty {
