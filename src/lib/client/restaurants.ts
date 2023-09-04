@@ -1,3 +1,4 @@
+import type { Restaurants } from "$lib/client.types";
 
 export function isRestaurantOpen(restaurant: { close_hour?: string | null, open_hour?: string | null }, currentTime = new Date().toISOString().substring(11, 19)) {
     if (!restaurant.close_hour || !restaurant.open_hour) {
@@ -24,4 +25,12 @@ export function getFranceTime(date: Date = new Date()) {
         second: 'numeric',
     });
     return formatter.format(date);
+}
+
+export async function getAffluence(restaurantId: Restaurants['id']): Promise<number> {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(Math.ceil(Math.random() * 60));
+        }, 2000);
+    });
 }

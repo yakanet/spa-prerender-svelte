@@ -3,6 +3,7 @@
     import { LL, locale, setLocale } from "$i18n/i18n-svelte";
     import type { Restaurants } from "$lib/client.types.js";
     import {
+        getAffluence,
         getFranceTime,
         isRestaurantOpen,
     } from "$lib/client/restaurants.js";
@@ -11,9 +12,7 @@
     export let data;
 
     const checkOpened = (restaurant: Restaurants) => {
-        return isRestaurantOpen(restaurant, getFranceTime())
-            ? $LL.open()
-            : $LL.close();
+        return isRestaurantOpen(restaurant, getFranceTime()) ? "OPEN" : "CLOSE";
     };
 
     function localeToFlag(code: string) {
@@ -47,7 +46,16 @@
             <small>{restaurant.open_hour} - {restaurant.close_hour}</small>
             <div class="restaurant__status">
                 {#if browser}
-                    {checkOpened(restaurant)}
+                    {@const open = checkOpened(restaurant)}
+                    {#if open === "CLOSE"}
+                        {$LL.close()}
+                    {:else}
+                        {#await getAffluence(restaurant.id)}
+                            {$LL.open()}
+                        {:then affluence}
+                            {affluence} mn
+                        {/await}
+                    {/if}
                 {:else}
                     &nbsp;
                 {/if}
