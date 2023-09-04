@@ -38,7 +38,7 @@
         portal: null,
         onSelectedChange: ({ curr, next }) => {
             if (next?.value?.type === "restaurant") {
-                goto(`/${$locale}/restaurants/${next.value.id}`);
+                goto(`/${$locale}/restaurants/${next.value.id}/`);
                 return undefined;
             }
             if (next?.value) {

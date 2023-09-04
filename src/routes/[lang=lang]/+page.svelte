@@ -1,13 +1,6 @@
 <script lang="ts">
-    import { browser } from "$app/environment";
-    import { LL, locale, setLocale } from "$i18n/i18n-svelte";
+    import { LL, locale } from "$i18n/i18n-svelte";
     import RestaurantStatus from "$lib/RestaurantStatus.svelte";
-    import type { Restaurants } from "$lib/client.types.js";
-    import {
-        getAffluence,
-        getFranceTime,
-        isRestaurantOpen,
-    } from "$lib/client/restaurants.js";
     import { fade } from "svelte/transition";
     import Searchbar from "./Searchbar.svelte";
 
@@ -38,7 +31,7 @@
 <ul class="restaurants">
     {#each data.restaurants as restaurant (String(restaurant.id))}
         <li class="restaurant" aria-label={restaurant.name}>
-            <a href="/{$locale}/restaurants/{restaurant.id}">
+            <a href="/{$locale}/restaurants/{restaurant.id}/">
                 <span>{restaurant.name}</span>
             </a>
             <small aria-label="Heures d'ouverture">{restaurant.open_hour} - {restaurant.close_hour}</small>

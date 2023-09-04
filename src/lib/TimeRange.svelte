@@ -1,8 +1,8 @@
 <script lang="ts">
     import { getFranceTime, isRestaurantOpen } from "./client/restaurants";
 
-    export let open: string;
-    export let close: string;
+    export let open: string | null;
+    export let close: string | null;
 
     export let currentFrTime = getFranceTime().substring(0, 2) + ":00:00:01";
 </script>

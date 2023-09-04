@@ -13,8 +13,8 @@
 <h1>{data.restaurant.name}</h1>
 
 <TimeRange
-    open={data.restaurant.open_hour}
-    close={data.restaurant.close_hour}
+    open={data.restaurant.open_hour ?? null}
+    close={data.restaurant.close_hour ?? null}
 />
 
 <pre>{JSON.stringify(data.restaurant, null, 2)}</pre>
