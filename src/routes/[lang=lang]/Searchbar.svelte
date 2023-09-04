@@ -35,6 +35,7 @@
         forceVisible: false,
         closeOnEscape: true,
         closeOnOutsideClick: true,
+        portal: null,
         onSelectedChange: ({ curr, next }) => {
             if (next?.value?.type === "restaurant") {
                 goto(`/${$locale}/restaurants/${next.value.id}`);
@@ -69,9 +70,9 @@
                 })}
             >
                 {#if result.item.type === "restaurant"}
-                    <span class="avatar restaurant">R</span>
+                    <span class="avatar restaurant" aria-hidden="true">R</span>
                 {:else if result.item.type === "product"}
-                    <span class="avatar product">P</span>
+                    <span class="avatar product" aria-hidden="true">P</span>
                 {/if}
                 <div style="display: flex; flex-wrap: nowrap">
                     {result.item.name}

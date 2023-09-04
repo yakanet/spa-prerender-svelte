@@ -17,14 +17,16 @@
 {#if browser}
     {@const open = checkOpened(restaurant)}
     {#if open === "CLOSE"}
-        <slot display={$LL.close()} />
+        <slot display={$LL.close()} busy={false} />
     {:else}
         {#await getAffluence(restaurant.id)}
-            <slot display={$LL.open()} />
+            <slot display={$LL.open()} busy={true} />
         {:then affluence}
-            <slot display={affluence + " mn"} />
+            <slot display={affluence + " mn"} busy={false} />
+        {:catch}
+            <slot display={$LL.open()} busy={false} />
         {/await}
     {/if}
 {:else}
-    <slot display={null} />
+    <slot display={null} busy={false} />
 {/if}

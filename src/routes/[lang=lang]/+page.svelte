@@ -13,10 +13,6 @@
 
     export let data;
 
-    const checkOpened = (restaurant: Restaurants) => {
-        return isRestaurantOpen(restaurant, getFranceTime()) ? "OPEN" : "CLOSE";
-    };
-
     function localeToFlag(code: string) {
         return code
             .split("")
@@ -45,9 +41,9 @@
             <a href="/{$locale}/restaurants/{restaurant.id}">
                 <span>{restaurant.name}</span>
             </a>
-            <small>{restaurant.open_hour} - {restaurant.close_hour}</small>
-            <RestaurantStatus {restaurant} let:display>
-                <div class="restaurant__status" class:hide={!display} in:fade>
+            <small aria-label="Heures d'ouverture">{restaurant.open_hour} - {restaurant.close_hour}</small>
+            <RestaurantStatus {restaurant} let:display let:busy>
+                <div class="restaurant__status" aria-busy={busy} class:hide={!display} in:fade>
                     {display}
                 </div>
             </RestaurantStatus>
