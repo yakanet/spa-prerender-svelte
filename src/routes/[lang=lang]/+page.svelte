@@ -40,7 +40,7 @@
 
 <h2>{$LL.restaurants()}</h2>
 <ul class="restaurants">
-    {#each data.restaurants as restaurant}
+    {#each data.restaurants as restaurant (String(restaurant.id))}
         <li class="restaurant" aria-label={restaurant.name}>
             <a href="/{$locale}/restaurants/{restaurant.id}">
                 <span>{restaurant.name}</span>
@@ -58,7 +58,7 @@
 <h2>{$LL.products()}</h2>
 
 <ul class="products">
-    {#each data.products as product}
+    {#each data.products as product (product.id)}
         <li aria-label={product.name}>
             {product.name}
         </li>
