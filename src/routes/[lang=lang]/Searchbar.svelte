@@ -82,16 +82,18 @@
     {/if}
 </ul>
 
-<style>
+<style lang="scss">
     input[type="search"] {
         padding: 0.75rem;
         width: 100%;
 
         /* For iOS compatibility*/
+        border-radius: 3px;
+        margin-top: 0.5em;
         appearance: none;
         border-width: 2px;
         border-style: inset;
-        border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+        border-color: rgb(118, 118, 118);
     }
 
     .search-result:empty {

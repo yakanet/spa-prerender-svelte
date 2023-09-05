@@ -34,9 +34,16 @@
             <a href="/{$locale}/restaurants/{restaurant.id}/">
                 <span>{restaurant.name}</span>
             </a>
-            <small aria-label="Heures d'ouverture">{restaurant.open_hour} - {restaurant.close_hour}</small>
+            <small aria-label="Heures d'ouverture"
+                >{restaurant.open_hour} - {restaurant.close_hour}</small
+            >
             <RestaurantStatus {restaurant} let:display let:busy>
-                <div class="restaurant__status" aria-busy={busy} class:hide={!display} in:fade>
+                <div
+                    class="restaurant__status"
+                    aria-busy={busy}
+                    class:hide={!display}
+                    in:fade
+                >
                     {display}
                 </div>
             </RestaurantStatus>
@@ -69,24 +76,24 @@
     {/each}
 </div>
 
-<style>
+<style lang="scss">
     ul {
         list-style: none;
         padding: 0;
         margin: 0;
     }
 
-    .restaurants li + li,
-    .products li + li {
-        border-top: 1px solid #dedede;
+    .restaurants,
+    .products {
+        li {
+            margin-block: 0.25rem;
+        }
+        li + li {
+            border-top: 1px solid #dedede;
+        }
     }
 
-    .restaurants li,
-    .products li {
-        margin-block: 0.25rem;
-    }
-
-    ul a {
+    .restaurants a {
         display: inline-block;
         padding-block: 0.5rem;
     }
