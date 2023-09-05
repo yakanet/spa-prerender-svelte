@@ -17,6 +17,6 @@
     close={data.restaurant.close_hour ?? null}
 />
 
-<pre>{JSON.stringify(data.restaurant, null, 2)}</pre>
+<pre style="overflow-y: auto;">{JSON.stringify(data.restaurant, null, 2)}</pre>
 
 <a href="/{$locale}/">Back</a>

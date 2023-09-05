@@ -1,5 +1,6 @@
 <script lang="ts">
     import LL from "$i18n/i18n-svelte";
+    import { fly } from "svelte/transition";
     import { useRegisterSW } from "virtual:pwa-register/svelte";
     const { needRefresh, updateServiceWorker, offlineReady } = useRegisterSW({
         onRegistered(r) {
@@ -22,7 +23,7 @@
 </script>
 
 {#if toast}
-    <div class="pwa-toast" role="alert">
+    <div class="pwa-toast" role="alert" transition:fly={{duration:1000, y: 200}}>
         <div class="message">
             <span>
                 {$LL.pwa_new_content()}
@@ -41,7 +42,7 @@
 
 <style>
     .pwa-toast {
-        position: absolute;
+        position: fixed;
         left: 0;
         right: 0;
         bottom: 0;
