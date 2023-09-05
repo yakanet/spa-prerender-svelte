@@ -19,4 +19,4 @@
 
 <pre>{JSON.stringify(data.restaurant, null, 2)}</pre>
 
-<a href="/{$locale}">Back</a>
+<a href="/{$locale}/">Back</a>

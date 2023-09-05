@@ -5,5 +5,5 @@ export const trailingSlash = 'always';
 
 export const load = async ({data}) => {
     await loadLocaleAsync(data.locale);
-    return { locale: data.locale }
+    return { locale: data.locale };
 };

@@ -58,7 +58,7 @@
     {#each data.languages as language}
         {@const adjusted = language === "en" ? "us" : "fr"}
         <a
-            href="/{language}"
+            href="/{language}/"
             class="language"
             data-sveltekit-reload
             class:active={$locale === language}

@@ -11,6 +11,7 @@ export const load: PageServerLoad = async ({ params, fetch }) => {
     }
 };
 
+/*
 export async function entries() {
     const directus = new Directus(fetch)
     const restaurants = await directus.getRestaurants();
@@ -19,4 +20,4 @@ export async function entries() {
         id: String(restaurantId),
         lang: language,
     })));
-}
+}*/
