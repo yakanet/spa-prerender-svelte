@@ -92,8 +92,8 @@
         margin-top: 0.5em;
         appearance: none;
         border-width: 2px;
-        border-style: inset;
-        border-color: rgb(118, 118, 118);
+        border-style: solid;
+        border-color: #444;
     }
 
     .search-result:empty {
