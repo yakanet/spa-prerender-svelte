@@ -20,7 +20,25 @@
 </script>
 
 <svelte:head>
+  <!-- PWA Manifest-->
   {@html webManifest}
+  <!-- End PWA Manifest-->
+
+  <!-- Matomo Tag Manager -->
+  <script>
+    const _mtm = (window._mtm = window._mtm || []);
+    _mtm.push({ "mtm.startTime": new Date().getTime(), event: "mtm.Start" });
+    (function () {
+      var d = document,
+        g = d.createElement("script"),
+        s = d.getElementsByTagName("script")[0];
+      g.async = true;
+      g.src =
+        "https://cdn.matomo.cloud/prerenderbroutindev.matomo.cloud/container_IUHbbhB5.js";
+      s.parentNode.insertBefore(g, s);
+    })();
+  </script>
+  <!-- End Matomo Tag Manager -->
 </svelte:head>
 
 <main>
