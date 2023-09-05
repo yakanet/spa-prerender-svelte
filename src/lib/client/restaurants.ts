@@ -30,7 +30,11 @@ export function getFranceTime(date: Date = new Date()) {
 export async function getAffluence(restaurantId: Restaurants['id']): Promise<number> {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            resolve(Math.ceil(Math.random() * 60));
+            if(navigator.onLine) {
+                resolve(Math.ceil(Math.random() * 60));
+            } else {
+                reject(`Navigator offline`);
+            }
         }, 2000);
     });
 }
