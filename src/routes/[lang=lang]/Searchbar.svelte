@@ -7,6 +7,7 @@
 
     export let restaurants: Restaurants[];
     export let products: Produits[];
+    export let searchLimit = 5;
 
     type UnFuse<T> = T extends Fuse<infer K> ? K : never;
 
@@ -37,11 +38,15 @@
         closeOnOutsideClick: true,
         portal: null,
         onSelectedChange: ({ curr, next }) => {
-            if (next?.value?.type === "restaurant") {
+            if (!next?.value) {
+                return next;
+            }
+            _mtm?.push({ event: "search-item-selected" });
+            if (next.value.type === "restaurant") {
                 goto(`/${$locale}/restaurants/${next.value.id}/`);
                 return undefined;
             }
-            if (next?.value) {
+            if (next.value) {
                 alert("Selection du produit: " + next.value.name);
             }
             return next;
@@ -49,7 +54,7 @@
     });
 
     $: searchResult = index.search($input.value, {
-        limit: 5,
+        limit: searchLimit,
     });
 </script>
 
